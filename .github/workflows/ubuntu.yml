@@ -1,0 +1,51 @@
+name: Ubuntu
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    paths:
+      - 'snp**'
+      - '.github/workflows/ubuntu.yml'
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+  release:
+    types:
+      - released
+
+jobs:
+  ci:
+    name: ${{ matrix.distro }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        distro: [foxy, humble, rolling]
+    container:
+      image: ghcr.io/tesseract-robotics/tesseract_ros2:${{ matrix.distro }}-0.21
+      env:
+        CCACHE_DIR: ${{ github.workspace }}/${{ matrix.distro }}/.ccache
+        DEBIAN_FRONTEND: noninteractive
+        TZ: Etc/UTC
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: target_ws/src
+
+      - name: Install Dependencies
+        shell: bash
+        run: |
+          apt install -y -qq libxmlrpcpp-dev
+
+      - name: Build and Tests
+        uses: tesseract-robotics/colcon-action@v6
+        with:
+          before-script: source /opt/tesseract_ros2/install/setup.bash
+          ccache-prefix: ${{ matrix.distro }}
+          vcs-file: dependencies.repos
+          rosdep-install-args: '--skip-keys libvtk'
+          target-path: target_ws/src
+          target-args: --cmake-args -DCMAKE_BUILD_TYPE=Debug
