@@ -5,9 +5,6 @@ on:
     branches:
       - master
   pull_request:
-    # paths:
-    #   - 'snp**'
-    #   - '.github/workflows/ubuntu.yml'
   schedule:
     - cron: '0 5 * * *'
   workflow_dispatch:
@@ -35,17 +32,10 @@ jobs:
         with:
           path: target_ws/src
 
-      # - name: Install Dependencies
-      #   shell: bash
-      #   run: |
-      #     apt install -y -qq libxmlrpcpp-dev
-
       - name: Build and Tests
         uses: tesseract-robotics/colcon-action@v6
         with:
           before-script: source /opt/snp/install/setup.bash
           ccache-prefix: ${{ matrix.distro }}
-          # vcs-file: dependencies.repos
-          # rosdep-install-args: '--skip-keys libvtk'
           target-path: target_ws/src
           target-args: --cmake-args -DCMAKE_BUILD_TYPE=Debug

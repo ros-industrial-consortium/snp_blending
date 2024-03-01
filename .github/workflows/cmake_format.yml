@@ -5,10 +5,6 @@ on:
     branches:
       - master
   pull_request:
-    # paths:
-    #   - 'snp**'
-    #   - '.github/workflows/cmake_format.yml'
-    #   - '**cmake-format'
   schedule:
     - cron: '0 5 * * *'
 
