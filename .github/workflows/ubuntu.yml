@@ -5,9 +5,9 @@ on:
     branches:
       - master
   pull_request:
-    paths:
-      - 'snp**'
-      - '.github/workflows/ubuntu.yml'
+    # paths:
+    #   - 'snp**'
+    #   - '.github/workflows/ubuntu.yml'
   schedule:
     - cron: '0 5 * * *'
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
       matrix:
         distro: [foxy, humble, rolling]
     container:
-      image: ghcr.io/tesseract-robotics/tesseract_ros2:${{ matrix.distro }}-0.21
+      image: ghcr.io/ros-industrial-consortium/scan_n_plan_workshop:${{ matrix.distro }}-master
       env:
         CCACHE_DIR: ${{ github.workspace }}/${{ matrix.distro }}/.ccache
         DEBIAN_FRONTEND: noninteractive
@@ -35,17 +35,17 @@ jobs:
         with:
           path: target_ws/src
 
-      - name: Install Dependencies
-        shell: bash
-        run: |
-          apt install -y -qq libxmlrpcpp-dev
+      # - name: Install Dependencies
+      #   shell: bash
+      #   run: |
+      #     apt install -y -qq libxmlrpcpp-dev
 
       - name: Build and Tests
         uses: tesseract-robotics/colcon-action@v6
         with:
-          before-script: source /opt/tesseract_ros2/install/setup.bash
+          before-script: source /opt/snp/install/setup.bash
           ccache-prefix: ${{ matrix.distro }}
-          vcs-file: dependencies.repos
-          rosdep-install-args: '--skip-keys libvtk'
+          # vcs-file: dependencies.repos
+          # rosdep-install-args: '--skip-keys libvtk'
           target-path: target_ws/src
           target-args: --cmake-args -DCMAKE_BUILD_TYPE=Debug

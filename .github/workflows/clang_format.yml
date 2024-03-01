@@ -5,10 +5,10 @@ on:
     branches:
       - master
   pull_request:
-    paths:
-      - 'snp**'
-      - '.github/workflows/clang_format.yml'
-      - '**clang-format'
+    # paths:
+    #   - 'snp**'
+    #   - '.github/workflows/clang_format.yml'
+    #   - '**clang-format'
   schedule:
     - cron: '0 5 * * *'
 
