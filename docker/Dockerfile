@@ -7,8 +7,6 @@ ENV DEBIAN_FRONTEND noninteractivej
 
 USER root
 
-# Install Python dependencies
-RUN python3 -m pip install open3d pyquaternion --upgrade
 
 # Run apt update and install useful utilities like sudo
 RUN apt update -y -qq && apt install -y -qq sudo
@@ -19,5 +17,8 @@ ARG WORKSPACE_DIR=/opt/snp_blending
 RUN --mount=type=bind,target=${WORKSPACE_DIR}/src/snp_blending \
   source /opt/snp/install/setup.bash \
   && cd ${WORKSPACE_DIR} \ 
+  && rosdep install \
+      --from-paths src \
+      -iry \
   && colcon build --cmake-args \
   && rm -rf build log

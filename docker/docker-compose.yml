@@ -11,6 +11,7 @@ services:
       XAUTHORITY: $XAUTHORITY
       NVIDIA_DRIVER_CAPABILITIES: all
       ROS_LOG_DIR: /tmp
+      ROS_LOCALHOST_ONLY: 1
     container_name: snp_blending
     image: ghcr.io/ros-industrial-consortium/snp_blending:humble-master
     stdin_open: true
@@ -18,11 +19,15 @@ services:
     network_mode: host
     privileged: true
     user: ${CURRENT_UID}  # CURRENT_UID=$(id -u):$(id -g)
+    group_add:
+      - sudo
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /etc/hosts:/etc/hosts
       - /etc/passwd:/etc/passwd:ro
       - /etc/group:/etc/group:ro
+      - /etc/shadow:/etc/shadow:ro
+      - /dev:/dev
     deploy:
       resources:
         reservations:
@@ -30,3 +35,15 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+  # Driver
+  micro-ros-agent:
+    environment:
+      ROS_LOG_DIR: /tmp
+      ROS_LOCALHOST_ONLY: 1
+    container_name: micro-ros-agent
+    image: microros/micro-ros-agent:humble
+    command: udp4 --port 8888
+    stdin_open: true
+    tty: true
+    privileged: true
+    network_mode: host
