@@ -9,7 +9,8 @@ USER root
 
 
 # Run apt update and install useful utilities like sudo
-RUN apt update -y -qq && apt install -y -qq sudo
+RUN apt update -y -qq && apt install -y -qq sudo \
+  iputils-ping
 
 # Build the repository
 # Bind mount the source directory so as not to unnecessarily copy source code into the docker image
@@ -22,3 +23,6 @@ RUN --mount=type=bind,target=${WORKSPACE_DIR}/src/snp_blending \
       -iry \
   && colcon build --cmake-args \
   && rm -rf build log
+
+COPY --chmod=755 docker/launch_snp_blending.sh /opt/launch_snp_blending.sh
+ENTRYPOINT ["/opt/launch_snp_blending.sh"]
