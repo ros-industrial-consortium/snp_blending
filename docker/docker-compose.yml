@@ -12,6 +12,7 @@ services:
       NVIDIA_DRIVER_CAPABILITIES: all
       ROS_LOG_DIR: /tmp
       ROS_LOCALHOST_ONLY: 1
+      ROS_DOMAIN_ID: 18
     container_name: snp_blending
     image: ghcr.io/ros-industrial-consortium/snp_blending:humble-master
     stdin_open: true
@@ -40,6 +41,7 @@ services:
     environment:
       ROS_LOG_DIR: /tmp
       ROS_LOCALHOST_ONLY: 1
+      ROS_DOMAIN_ID: 18
     container_name: micro-ros-agent
     image: microros/micro-ros-agent:humble
     command: udp4 --port 8888
