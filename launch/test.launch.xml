@@ -7,7 +7,7 @@
   <arg name="rviz_config" default="$(find-pkg-share snp_blending)/config/rviz_base_config.rviz" if="$(var rviz)"/>
 
   <node pkg="joint_state_publisher" exec="joint_state_publisher">
-    <param name="source_list" value="[robot_joint_states, joint_state_broadcaster/joint_states]"/>
+    <param name="source_list" value="[robot_joint_states, joint_state_broadcaster/joint_states, ctrl_groups/r1/joint_states]"/>
   </node>
 
   <group if="$(var use_gui)">
