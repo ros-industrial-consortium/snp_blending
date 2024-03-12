@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        distro: [foxy, humble, rolling]
+        distro: [humble]
     container:
       image: ghcr.io/ros-industrial-consortium/scan_n_plan_workshop:${{ matrix.distro }}-master
       env:
