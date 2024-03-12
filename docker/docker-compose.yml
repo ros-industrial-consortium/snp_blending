@@ -9,7 +9,7 @@ services:
     environment:
       DISPLAY: $DISPLAY
       XAUTHORITY: $XAUTHORITY
-      NVIDIA_DRIVER_CAPABILITIES: all
+      # NVIDIA_DRIVER_CAPABILITIES: all
       ROS_LOG_DIR: /tmp
       ROS_LOCALHOST_ONLY: 1
       ROS_DOMAIN_ID: 18
@@ -29,13 +29,13 @@ services:
       - /etc/group:/etc/group:ro
       - /etc/shadow:/etc/shadow:ro
       - /dev:/dev
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
   # Driver
   micro-ros-agent:
     environment:
