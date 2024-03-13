@@ -41,6 +41,7 @@
     <param name="camera_frame" value="camera_color_optical_frame"/>
     <param name="robot_description" value="$(var robot_description)"/>
     <param name="robot_description_semantic" value="$(var robot_description_semantic)"/>
+    <param name="follow_joint_trajectory_action" value="$(var follow_joint_trajectory_action)"/>
     <!-- TSDF parameters -->
     <param name="tsdf.min.x" value="0.0"/>
     <param name="tsdf.min.y" value="0.0"/>
