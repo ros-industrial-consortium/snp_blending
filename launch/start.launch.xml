@@ -67,7 +67,7 @@
     <include file="$(find-pkg-share realsense2_camera)/launch/rs_launch.py">
       <arg name="align_depth.enable" value="true"/>
       <arg name="pointcloud.enable" value="true"/>
-      <arg name="rgb_camera.profile" value="640x360x90"/>
+      <arg name="rgb_camera.profile" value="640x360x30"/>
     </include>
   </group>
   <!-- Launch Open3d Interface Node (Sim) -->
