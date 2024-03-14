@@ -6,7 +6,8 @@
   <arg name="mesh_file" default="$(find-pkg-share snp_blending)/meshes/part_scan.ply"/>
   <arg name="scan_trajectory_file" default="$(find-pkg-share snp_blending)/config/scan_traj.yaml"/>
   <arg name="verbose" default="True"/>
-  <arg name="touch_links" default="[table, base_link, floor]"/>
+  <arg name="scan_disabled_contact_links" default="[table, base_link, floor]"/>
+  <arg name="scan_reduced_contact_links" default="[buffy_tcp]"/>
   <arg name="robot_description_file" default="$(find-pkg-share snp_blending)/urdf/workcell.xacro"/>
   <arg name="robot_description" default="$(command 'xacro $(var robot_description_file) ros_distro:=$(env ROS_DISTRO)')"/>
   <arg name="robot_description_semantic" default="$(command 'cat $(find-pkg-share snp_blending)/config/workcell.srdf')"/>
@@ -84,7 +85,8 @@
     <arg name="robot_description" value="$(var robot_description)"/>
     <arg name="robot_description_semantic" value="$(var robot_description_semantic)"/>
     <arg name="verbose" value="$(var verbose)"/>
-    <arg name="touch_links" value="$(var touch_links)"/>
+    <arg name="scan_disabled_contact_links" value="$(var scan_disabled_contact_links)"/>
+    <arg name="scan_reduced_contact_links" value="$(var scan_reduced_contact_links)"/>
   </include>
 
   <node pkg="snp_scanning" exec="scan_motion_plan_from_file_node">
