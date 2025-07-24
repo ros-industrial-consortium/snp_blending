@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot name="motoman_mh_180_120" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="motoman_mh_180_120" xmlns:xacro="http://ros.org/wiki/xacro" xmlns:tesseract="https://github.com/tesseract-robotics/tesseract" tesseract:make_convex="true">
 
   <xacro:macro name="cuboid" params="name l w h material offset=False">
     <link name="${name}">

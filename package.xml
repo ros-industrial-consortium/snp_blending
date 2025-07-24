@@ -27,6 +27,8 @@
   <exec_depend>joint_trajectory_controller</exec_depend>
   <exec_depend>hardware_interface</exec_depend>
   <exec_depend>realsense2_camera</exec_depend>
+  <exec_depend>rqt</exec_depend>
+  <exec_depend>rqt_common_plugins</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

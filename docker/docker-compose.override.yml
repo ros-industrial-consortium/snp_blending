@@ -1,0 +1,6 @@
+# services:
+#   snp_blending:
+#     environment:
+#       SNP_SIM_ROBOT: True
+#       SNP_SIM_VISION: True
+#       SNP_BYPASS_EXECUTION: False
