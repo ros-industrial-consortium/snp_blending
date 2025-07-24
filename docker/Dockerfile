@@ -8,7 +8,10 @@ ENV DEBIAN_FRONTEND noninteractivej
 USER root
 
 # Run apt update and install useful utilities like sudo
-RUN apt update -y -qq && apt install -y -qq sudo iputils-ping
+RUN apt update -y -qq && apt install -y -qq sudo iputils-ping python3 python3-pip
+
+# Install pyquaternion
+RUN python3 -m pip install pyquaternion
 
 # Install the dependency repositories
 # Use a tmpfs mount for the workspace so as not to unnecessarily copy files into the final image
