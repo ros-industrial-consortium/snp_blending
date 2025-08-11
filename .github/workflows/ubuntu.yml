@@ -33,9 +33,10 @@ jobs:
           path: target_ws/src
 
       - name: Build and Tests
-        uses: tesseract-robotics/colcon-action@v6
+        uses: tesseract-robotics/colcon-action@v13
         with:
           before-script: source /opt/snp/install/setup.bash
           ccache-prefix: ${{ matrix.distro }}
+          add-ros-ppa: false
           target-path: target_ws/src
           target-args: --cmake-args -DCMAKE_BUILD_TYPE=Debug
