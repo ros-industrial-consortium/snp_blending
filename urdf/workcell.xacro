@@ -66,7 +66,7 @@
   <joint name="buffy_tcp_joint" type="fixed">
     <parent link="tool0"/>
     <child link="buffy_tcp"/>
-    <origin xyz="0.265 0 0.19" rpy="0 ${pi/2} 0"/>
+    <origin xyz="0.265 0 0.19" rpy="0 ${radians(-90)} 0"/>
   </joint>
 
   <joint name="floor_to_platform" type="fixed">
