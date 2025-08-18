@@ -4,7 +4,7 @@
     <ros2_control name="${name}" type="system">
       <hardware>
         <xacro:if value="${sim}">
-          <plugin>fake_components/GenericSystem</plugin>
+          <plugin>mock_components/GenericSystem</plugin>
         </xacro:if>
       </hardware>
 
@@ -20,8 +20,6 @@
         <command_interface name="acceleration"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
-        <param name="initial_position">0.0</param>
-        <param name="initial_velocity">0.0</param>
       </joint>
       <joint name="${prefix}joint_2_l">
         <command_interface name="position">
@@ -35,8 +33,6 @@
         <command_interface name="acceleration"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
-        <param name="initial_position">0.0</param>
-        <param name="initial_velocity">0.0</param>
       </joint>
       <joint name="${prefix}joint_3_u">
         <command_interface name="position">
@@ -50,8 +46,6 @@
         <command_interface name="acceleration"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
-        <param name="initial_position">0.0</param>
-        <param name="initial_velocity">0.0</param>
       </joint>
       <joint name="${prefix}joint_4_r">
         <command_interface name="position">
@@ -65,8 +59,6 @@
         <command_interface name="acceleration"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
-        <param name="initial_position">0.0</param>
-        <param name="initial_velocity">0.0</param>
       </joint>
       <joint name="${prefix}joint_5_b">
         <command_interface name="position">
@@ -80,8 +72,6 @@
         <command_interface name="acceleration"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
-        <param name="initial_position">0.0</param>
-        <param name="initial_velocity">0.0</param>
       </joint>
       <joint name="${prefix}joint_6_t">
         <command_interface name="position">
@@ -95,8 +85,6 @@
         <command_interface name="acceleration"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
-        <param name="initial_position">0.0</param>
-        <param name="initial_velocity">0.0</param>
       </joint>
     </ros2_control>
   </xacro:macro>
